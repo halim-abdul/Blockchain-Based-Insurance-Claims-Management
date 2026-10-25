@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claims desk · local demo</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="brand"><span class="mark">◈</span><div><strong>Claims desk</strong><small>Local synthetic demo</small></div></div>
+    <label>View as <select id="user"><option>alice</option><option>bob</option><option>reviewer</option><option>operator</option><option>auditor</option></select></label>
+  </header>
+  <main>
+    <section class="intro"><p class="eyebrow">INSURANCE CLAIMS · DEMO</p><h1>Follow every decision.</h1><p>Create a synthetic claim, review its evidence, and record a simulated settlement. This local workflow does not move money or write to a blockchain.</p></section>
+    <div id="message" role="status" aria-live="polite"></div>
+    <section id="create-panel" class="panel">
+      <div class="section-head"><h2>New claim</h2><span>Claimant</span></div>
+      <form id="claim-form">
+        <label>Policy<select id="policy" required></select></label>
+        <label>Amount (demo minor units)<input id="amount" type="number" min="1" step="1" required></label>
+        <label>Incident date<input id="incident" type="date" required></label>
+        <button type="submit">Create draft</button>
+      </form>
+    </section>
+    <section class="panel">
+      <div class="section-head"><h2>Claims</h2><button id="refresh" class="quiet">Refresh</button></div>
+      <div id="claims" class="claim-list"></div>
+    </section>
+    <section id="detail-panel" class="panel hidden"><div class="section-head"><h2>Claim detail</h2><span id="claim-id"></span></div><div id="detail"></div></section>
+  </main>
+</body>
+</html>
