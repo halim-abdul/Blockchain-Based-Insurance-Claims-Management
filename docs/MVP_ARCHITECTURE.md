@@ -1,6 +1,6 @@
 # MVP architecture proposal
 
-Status: design only. None of the components below is implemented.
+Status: target architecture. A smaller local synthetic workflow is implemented; see [implementation boundaries](IMPLEMENTATION.md). This document also describes features not yet built.
 
 ## Scope
 
@@ -18,7 +18,7 @@ IPFS, external oracle, appeals, partial payments or production deployment.
 | Backend | FastAPI, authenticated sessions, ownership checks, upload validation | Insurer validates policy and coverage; chain does not establish evidence truth |
 | Frontend | React claimant form/timeline, review queue, operator settlement action, auditor view | Pending, Confirmed and Failed transaction states must remain distinct |
 | Chain integration | Durable transaction outbox, event worker, retry and reconciliation | Confirmed chain state is authoritative for submitted lifecycle; DB is its projection |
-| Deployment | Local chain, API, worker, PostgreSQL, private storage and frontend | Future Compose setup, migrations, fixtures and CI; no startup command exists yet |
+| Deployment | Local chain, API, worker, PostgreSQL, private storage and frontend | The current demo starts with `python -m backend.app.server`; Compose, migrations, chain deployment and CI remain planned |
 
 ## Minimal contract interface (specification, not Solidity)
 
@@ -89,15 +89,14 @@ signer can submit false decisions; the chain is not a fraud detector. Require
 least privilege, server-side ownership checks, safe upload handling, redacted
 logs, rate limits and secret management before any demo exposure.
 
-## Proposed folders
+## Current layout
 
 | Path | Purpose |
 | --- | --- |
-| contracts/src, contracts/test, contracts/scripts | Solidity, contract tests, local deployment |
-| backend/app, backend/migrations, backend/tests | API, models, worker and tests |
-| frontend/src, frontend/e2e | UI and end-to-end checks |
-| fixtures | Synthetic policies, claims and fake documents |
-| infra | Local service configuration and environment template |
-| docs | Architecture, validation and operating instructions |
+| `contracts/src` | Standalone Solidity audit ledger |
+| `backend/app` | Local SQLite workflow and HTTP API |
+| `backend/tests` | Python lifecycle, storage and access tests |
+| `frontend` | Browser dashboard served by the API |
+| `docs` | Target design, validation plan and implementation boundaries |
 
-These are planned paths, not an implemented scaffold.
+Contract tests, migrations, chain integration, deployment configuration and end-to-end UI tests remain planned.

@@ -1,11 +1,10 @@
 # Validation and delivery plan
 
-Status: planned checks, not test results. No application or tests have run.
+Status: target validation plan. A local Python suite covers part of this matrix and currently passes 18 tests with `python -m unittest discover -v`. Contract and chain integration checks remain planned.
 
 ## Synthetic fixtures to implement
 
-Use three fictitious claimants and separate reviewer, settlement operator,
-admin and auditor accounts. All amounts are integer minor units in a single
+The current local demo seeds two fictitious claimants plus reviewer, settlement operator, and auditor identities. A third claimant and separate admin account remain planned. All amounts are integer minor units in a single
 demo currency. Generate development credentials locally; never commit keys.
 
 | Scenario | Input | Expected outcome |
@@ -57,11 +56,11 @@ Commit count and future dates are not acceptance criteria.
 
 ## Runnable MVP gate
 
-A clean checkout must start through documented local instructions, apply
+A clean checkout of the eventual chain-connected MVP must start through documented local instructions, apply
 migrations, deploy the local contract and load synthetic data. Approval,
 rejection and simulated-settlement paths must pass alongside authorization,
 retry and failure scenarios. Record actual commands and outcomes only after
-execution. Until then, README must identify the repository as design-stage.
+execution. Until then, README must identify the repository as a local synthetic prototype.
 
 Production readiness, security audit, legal compliance, real payments,
 ML fraud detection and public-network operation require separate evidence
